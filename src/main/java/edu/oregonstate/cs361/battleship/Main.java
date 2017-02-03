@@ -1,6 +1,18 @@
 package edu.oregonstate.cs361.battleship;
 
+import com.google.gson.Gson;
 import spark.Request;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Random;
+
+import static edu.oregonstate.cs361.battleship.Utils.computerFire;
+import static edu.oregonstate.cs361.battleship.Utils.isComputerHit;
+import static edu.oregonstate.cs361.battleship.Utils.isHit;
+import static spark.Spark.port;
 import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.staticFiles;
@@ -8,7 +20,8 @@ import static spark.Spark.staticFiles;
 public class Main {
 
     public static void main(String[] args) {
-        //This will allow us to server the static pages such as index.html, app.js, etc.
+    	port(4000);
+    	//This will allow us to server the static pages such as index.html, app.js, etc.
         staticFiles.location("/public");
 
         //This will listen to GET requests to /model and return a clean new model
@@ -20,13 +33,16 @@ public class Main {
     }
 
     //This function should return a new model
-    private static String newModel() {
-        return null;
+    static String newModel() {
+        Gson gson = new Gson();
+        return gson.toJson(new BattleshipModel());
     }
 
     //This function should accept an HTTP request and deseralize it into an actual Java object.
     private static BattleshipModel getModelFromReq(Request req){
-        return null;
+        Gson gson = new Gson();
+        return gson.fromJson(req.body(), BattleshipModel.class);
+    }
     }
 
     // http://localhost:4567/placeShip/{shipname}/{across}/{down}/{horizontal | vertical
