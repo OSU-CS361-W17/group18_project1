@@ -21,6 +21,6 @@ public class Position {
 	//Getter and setter functions for easy access to variables
 	public int getAcross() { return this.across; }
 	public int getDown() { return this.down; }
-	public void setAcross( int a ) { this.across = a; }
-	public void setDown( int d ) { this.down = d; }
+	public void setAcross(int a) { this.across = a; }
+	public void setDown(int d) { this.down = d; }
 }
