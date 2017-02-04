@@ -45,6 +45,7 @@ public class Main {
     }
     }
 
+    //This controller should take a json object from the front end, and place the ship as requested, and then return the object.
     // http://localhost:4567/placeShip/{shipname}/{across}/{down}/{horizontal | vertical
     private static String placeShip(Request req) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
         
