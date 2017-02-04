@@ -67,8 +67,4 @@ public class Utils {
         return new Position(row, col);
     }
 
-    public static Position computerPlaceShip(int gridSize, int shipLength, ){
-
-
-    }
 }
