@@ -73,5 +73,37 @@ public class Main {
     private static String fireAt(Request req) {
         return null;
     }
+    
+    // Similar to placeShip, but with firing.
+    // http://http://localhost:4567/fire/{across}/{down}
+    private static String fireAt(Request req) {
+
+        // FIXME js mistakes change col and row
+        int row = Integer.parseInt(req.params("col"));
+        int col = Integer.parseInt(req.params("row"));
+        BattleshipModel model = getModelFromReq(req);
+
+        if (isHit(model, row, col)) {
+            // FIXME js take computerHits as playerHits
+            model.computerHits.add(new Position(row, col));
+        } else {
+            // FIXME js take computerMisses as playerMisses
+            model.computerMisses.add(new Position(row, col));
+        }
+
+        Position pos = computerFire(model);
+
+        if (isComputerHit(model, pos)) {
+            // FIXME js take playerHits as computerHits
+            model.playerHits.add(pos);
+        } else {
+            // FIXME js take playerMisses as computerMisses
+            model.playerMisses.add(pos);
+        }
+
+        Gson gson = new Gson();
+
+        return gson.toJson(model);
+    }
 
 }
