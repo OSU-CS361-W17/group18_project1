@@ -66,4 +66,5 @@ public class Utils {
 
         return new Position(row, col);
     }
+
 }

@@ -4,9 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-/**
- * Created by michaelhilton on 1/26/17.
- */
+
 public class BattleshipModel {
 
     public Ship aircraftCarrier;

@@ -43,25 +43,24 @@ public class Main {
         Gson gson = new Gson();
         return gson.fromJson(req.body(), BattleshipModel.class);
     }
-    }
 
     //This controller should take a json object from the front end, and place the ship as requested, and then return the object.
     // http://localhost:4567/placeShip/{shipname}/{across}/{down}/{horizontal | vertical
     private static String placeShip(Request req) throws ClassNotFoundException, NoSuchFieldException, IllegalAccessException {
-        
+
         BattleshipModel model = getModelFromReq(req);
         String id = req.params("id");
         int row = Integer.parseInt(req.params("row"));
         int col = Integer.parseInt(req.params("col"));
         String orientation = req.params("orientation");
-        
+
         Class modelClass = Class.forName("edu.oregonstate.cs361.battleship.BattleshipModel");
         Field idField = modelClass.getField(id);
-        
+
         Ship ship = (Ship) idField.get(model);
         ship.start.across = row;
         ship.start.down = col;
-        
+
         if (orientation.equals("horizontal")) {
             ship.end.across = ship.start.across;
             ship.end.down = ship.start.down + ship.length;
@@ -69,6 +68,7 @@ public class Main {
             ship.end.across = ship.start.across + ship.length;
             ship.end.down = ship.start.down;
         }
+    }
 
     //Similar to placeShip, but with firing.
     private static String fireAt(Request req) {
